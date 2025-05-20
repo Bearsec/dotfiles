@@ -1,13 +1,11 @@
 #!/bin/bash
 #/usr/local/sbin/mount-shared-folders
-#echo "[i] Updating argos pannel"
-#mv /root/.config/argos/tun0_status.0r.3s.sh /root/.config/argos/tun0_status.1r.3s.sh
-#mv /root/.config/argos/tun0_status.1r.3s.sh /root/.config/argos/tun0_status.0r.3s.sh
+
 echo "[i] Removing old folders and files"
 vmware-hgfsclient | while read folder; do
 	rm -rf "~/${folder}"
 	rm -rf "~/Desktop/${folder}"
-	rm -rf "/usr/local/sbin/htb-vpn"
+#	rm -rf "/usr/local/sbin/htb-vpn"
 	rm -rf "/${folder}"
  	echo "[i] Mounting ${folder}   (/mnt/hgfs/${folder})"
  	mkdir -p "/mnt/hgfs/${folder}"
@@ -16,7 +14,7 @@ vmware-hgfsclient | while read folder; do
  	echo "[i] Creating symlinks"
  	ln -s "/mnt/hgfs/${folder}" "~/${folder}"
  	ln -s "/mnt/hgfs/${folder}" "~/Desktop/${folder}"
- 	ln -s "/mnt/hgfs/${folder}/#trainings/htb/info/htb-vpn.sh" "/usr/local/sbin/htb-vpn"
+# 	ln -s "/mnt/hgfs/${folder}/#trainings/htb/info/htb-vpn.sh" "/usr/local/sbin/htb-vpn"
  	ln -s "/mnt/hgfs/${folder}/" "/${folder}"
 done
 echo [+] Done!
